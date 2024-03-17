@@ -6,8 +6,8 @@ public class Biblioteca {
     }
 
     public boolean buscadorPorNombre(String titulo) {
-        for (int i = 0; i < peliculas.length; i++) {
-            if (peliculas[i].getNombre().equals(titulo)){
+        for (Pelicula pelicula : peliculas) {
+            if (pelicula.getNombre().equals(titulo)) {
                 return true;
             }
         }
