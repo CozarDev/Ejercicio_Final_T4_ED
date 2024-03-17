@@ -1,10 +1,28 @@
 public class Biblioteca {
+    private static Biblioteca INSTANCE;
+    public String value;
     private Pelicula[] peliculas;
     public Biblioteca(int capacidad) {
         this.peliculas = new Pelicula[capacidad];
     }
     private void setPeliculas(Pelicula[] var) {
         this.peliculas = var;
+    }
+
+    private Biblioteca(String value) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex){
+            ex.printStackTrace();
+        }
+        this.value = value;
+    }
+
+    public static Biblioteca getInstance(String value) {
+        if (INSTANCE == null){
+            INSTANCE = new Biblioteca(value);
+        }
+        return INSTANCE;
     }
     private void setPelicula(int donde, Pelicula pelicula) {
         this.peliculas[donde] = pelicula;
