@@ -4,11 +4,15 @@ public class Pelicula {
     private int duracion;
     private int anio;
 
-    public Pelicula(String nombre, String director, int duracion, int anio) {
-        this.nombre = nombre;
-        this.director = director;
-        this.duracion = duracion;
-        this.anio = anio;
+    public Pelicula(PeliculaBuilder builder) {
+        this.nombre = builder.nombre;
+        this.director = builder.director;
+        this.duracion = builder.duracion;
+        this.anio = builder.anio;
+    }
+
+    public static PeliculaBuilder builder(){
+        return new PeliculaBuilder(builder().nombre);
     }
 
     public void setNombre(String nombre) {
@@ -42,4 +46,34 @@ public class Pelicula {
     public String getNombre() {
         return nombre;
     }
+
+    public static class PeliculaBuilder {
+        private String nombre;
+        private String director;
+        private int duracion;
+        private int anio;
+
+        public PeliculaBuilder(String nombre){
+            this.nombre = nombre;
+        }
+        public PeliculaBuilder setDirector(String director) {
+            this.director = director;
+            return this;
+        }
+
+        public PeliculaBuilder setDuracion(int duracion) {
+            this.duracion = duracion;
+            return this;
+        }
+
+        public PeliculaBuilder setAño(int anio) {
+            this.anio = anio;
+            return this;
+        }
+        public Pelicula build() {
+            Pelicula pelicula = new Pelicula(this);
+            return pelicula;
+        }
+    }
 }
+
